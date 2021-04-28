@@ -5,7 +5,7 @@ import utils.RandomUtils;
 
 public class Application {
     final static int maxNumberLength = 3;
-    
+
     public static int[] getRandomNumbers() {
         int[] numbers = new int[3];
         int[] visitNumbers = new int[10];
@@ -26,8 +26,15 @@ public class Application {
         return numbers;
     }
 
+    public static int getUserNumbers() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("숫자를 입력해주세요 : ");
+        int userNumbers = sc.nextInt();
+        return userNumbers;
+    }
+
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
+//        final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
     }
 }
