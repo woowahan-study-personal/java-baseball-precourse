@@ -26,15 +26,33 @@ public class Application {
         return numbers;
     }
 
-    public static int getUserNumbers() {
+    public static int[] getUserNumbers() {
         Scanner sc = new Scanner(System.in);
         System.out.print("숫자를 입력해주세요 : ");
         int userNumbers = sc.nextInt();
-        return userNumbers;
+        if (userNumbers >= 1000 || userNumbers < 100) {
+            throw new IllegalArgumentException("세 자리 숫자를 입력해주세요");
+        }
+        int[] userNumberArray = new int[3];
+        userNumberArray[0] = userNumbers / 100;
+        userNumbers %= 100;
+        userNumberArray[1] = userNumbers / 10;
+        userNumbers %= 10;
+        userNumberArray[2] = userNumbers;
+        if (userNumberArray[0] == userNumberArray[1] || userNumberArray[0] == userNumberArray[2] || userNumberArray[1] == userNumberArray[2]) {
+            throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
+        }
+        return userNumberArray;
     }
+
+//    public static String checkResult() {
+//
+//    }
 
     public static void main(String[] args) {
 //        final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
+        int[] num = getUserNumbers();
+        System.out.println(num[0]);
     }
 }
