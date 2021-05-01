@@ -48,19 +48,32 @@ public class Application {
         return userNumberArray;
     }
 
+    public static boolean checkStrike(int userNumber, int randomNumber) {
+        if (userNumber == randomNumber) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkBall(int userNumbers, int[] randomNumbers) {
+        for (int randomNumber : randomNumbers) {
+            if (userNumbers == randomNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static int[] checkResult(int[] userNumbers, int[] randomNumbers) {
         int[] result = new int[2];
         int strike = 0;
         int ball = 0;
         for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
-            if (userNumbers[i] == randomNumbers[i]) {
+            if (checkStrike(userNumbers[i], randomNumbers[i])) {
                 strike++;
             } else {
-                for (int randomNumber : randomNumbers) {
-                    if (userNumbers[i] == randomNumber) {
-                        ball++;
-                        break;
-                    }
+                if (checkBall(userNumbers[i], randomNumbers)) {
+                    ball++;
                 }
             }
         }
