@@ -4,20 +4,25 @@ import java.util.Scanner;
 import utils.RandomUtils;
 
 public class Application {
+    public static final int NUMBER_OF_DIGIT = 3;
+    public static final int START_OF_RAND_NUMBER = 0;
+    public static final int END_OF_RAND_NUMBER = 9;
+    public static final int LENGTH_OF_POSSIBLE_NUMBER = 10;
+
     public static int[] getRandomNumbers() {
-        int[] numbers = new int[3];
-        int[] visitNumbers = new int[10];
-        for (int i = 0; i < 3; i++) {
+        int[] numbers = new int[NUMBER_OF_DIGIT];
+        boolean[] visitNumbers = new boolean[LENGTH_OF_POSSIBLE_NUMBER];
+        for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
             while (true) {
-                int number = RandomUtils.nextInt(0, 9);
+                int number = RandomUtils.nextInt(START_OF_RAND_NUMBER, END_OF_RAND_NUMBER);
                 if (i == 0 & number == 0) {
                     continue;
                 }
-                if (visitNumbers[number] == 1) {
+                if (visitNumbers[number]) {
                     continue;
                 }
                 numbers[i] = number;
-                visitNumbers[number] = 1;
+                visitNumbers[number] = true;
                 break;
             }
         }
@@ -28,10 +33,10 @@ public class Application {
         Scanner sc = new Scanner(System.in);
         System.out.print("숫자를 입력해주세요 : ");
         int userNumbers = sc.nextInt();
-        if (userNumbers >= 1000 || userNumbers < 100) {
+        if (userNumbers >= Math.pow(10, NUMBER_OF_DIGIT) || userNumbers < Math.pow(10, NUMBER_OF_DIGIT - 1)) {
             throw new IllegalArgumentException("세 자리 숫자를 입력해주세요");
         }
-        int[] userNumberArray = new int[3];
+        int[] userNumberArray = new int[NUMBER_OF_DIGIT];
         userNumberArray[0] = userNumbers / 100;
         userNumbers %= 100;
         userNumberArray[1] = userNumbers / 10;
@@ -47,7 +52,7 @@ public class Application {
         int[] result = new int[2];
         int strike = 0;
         int ball = 0;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
             if (userNumbers[i] == randomNumbers[i]) {
                 strike++;
             } else {
@@ -68,8 +73,8 @@ public class Application {
         String text = "";
         if (ball == 0 & strike == 0) {
             text = "낫싱";
-        } else if (strike == 3) {
-          text += "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+        } else if (strike == NUMBER_OF_DIGIT) {
+          text += Integer.toString(NUMBER_OF_DIGIT) + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
         } else {
             if (ball != 0) {
                 text += Integer.toString(ball) + "볼 ";
@@ -94,15 +99,14 @@ public class Application {
     }
 
     public static void main(String[] args) {
-
         boolean flag = true;
         while (flag) {
             int strike = 0;
             int[] randomNumbers = getRandomNumbers();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
                 System.out.println(randomNumbers[i]);
             }
-            while (strike != 3) {
+            while (strike != NUMBER_OF_DIGIT) {
                 int[] userNumbers = getUserNumbers();
                 int[] result = checkResult(userNumbers, randomNumbers);
                 strike = result[0];
