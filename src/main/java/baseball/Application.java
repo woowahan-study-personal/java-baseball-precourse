@@ -19,8 +19,25 @@ public class Application {
         return (IntStream.of(numbers).anyMatch(x -> x == number));
     }
 
+    public static int[] setRandomNumbers() {
+        int i = 0;
+        while (i < NUMBERS_LENGTH) {
+            int number = getRandomNumber();
+            if (checkRandomNumber(number) == false) {
+                numbers[i] = number;
+                i++;
+            }
+        }
+        for (int j = 0; j < 3; j++) {
+            System.out.println(numbers[j]);
+        }
+
+        return numbers;
+    }
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
+        setRandomNumbers();
     }
 }
