@@ -1,7 +1,7 @@
 package baseball;
 
 import utils.RandomUtils;
-
+import java.util.stream.IntStream;
 import java.util.Scanner;
 
 public class Application {
@@ -13,6 +13,10 @@ public class Application {
         int END_NUMBER = 9;
         int number = RandomUtils.nextInt(START_NUMBER, END_NUMBER);
         return number;
+    }
+
+    public static boolean checkRandomNumber(int number) {
+        return (IntStream.of(numbers).anyMatch(x -> x == number));
     }
 
     public static void main(String[] args) {
