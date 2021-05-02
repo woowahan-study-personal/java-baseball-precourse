@@ -6,23 +6,27 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Let's play game~~~");
+
         boolean startGame = restartGame(scanner);
         int strike = 0;
         int ball = 0;
-        // 2 게임 반복
+        
+        // 1 게임 반복
         while (startGame) {
             // 랜덤수발생 randomNum
-
-            // 3 입력 반복
+            String randomNum = "123";
+            System.out.println("randomNum : "+randomNum);
+            // 2 입력비교 반복
             while (strike != 3) {
                 // 내숫자입력 userNum
+                System.out.println("userNum : ");
+                String userNum = scanner.nextLine();
+                int[] compareResult = compareNum(randomNum, userNum);
                 // 랜덤수 = 내숫자비교 [f]
-
-                // strike = 값;
-                // ball = 값;
+                 ball = compareResult[0];
+                 strike = compareResult[1];
                 // 볼/스 결과출력 [f]
                 resultGame(ball, strike);
-                strike = 3;
             }
             strike = 0;
             ball = 0;
@@ -31,10 +35,27 @@ public class Application {
         }
     }
 
+    // 랜덤수 = 내숫자비교 [f]
+    public static int[] compareNum(String randomNum, String userNum) {
+        int[] compareResult = {0,0};
+        for (int i=0; i<userNum.length(); i++) {
+            for (int j=0; j<randomNum.length(); j++) {
+                if (userNum.substring(i, i + 1).equals(randomNum.substring(j, j + 1))) {
+                    if(i == j) {
+                        compareResult[1] += 1;
+                    } else {
+                        compareResult[0] += 1;
+                    }
+                }
+            }
+        }
+        return compareResult;
+    }
+
     // 게임 재시작 [f]
     public static boolean restartGame(Scanner scanner) {
         System.out.println("restart 1, end 2");
-        int restartGameNum = scanner.nextInt();
+        int restartGameNum = Integer.parseInt(scanner.nextLine());
         if (restartGameNum != 1 && restartGameNum != 2) {
             throw new IllegalArgumentException("error");
         } else if (restartGameNum == 1) {
