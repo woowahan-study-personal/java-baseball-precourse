@@ -1,5 +1,7 @@
 package baseball;
 
+import utils.RandomUtils;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,23 +10,6 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Let's play game");
 
-        // 중복없는 랜덤수 만들기
-        int randomArr[] = new int[3];
-        Random r = new Random();
-        for (int i=0; i<3; i++) {
-            randomArr[i] = r.nextInt(9)+1;
-            for (int j=0; j<i; j++) {
-                if(randomArr[i]==randomArr[j]){
-                    i--;
-                }
-            }
-        }
-        for (int i=0; i<3; i++) {
-            System.out.println(randomArr[i]);
-        }
-        String rn = Integer.toString(randomArr[0])+Integer.toString(randomArr[1])+Integer.toString(randomArr[2]);
-        System.out.println(rn);
-
         boolean startGame = restartGame(scanner);
         int strike = 0;
         int ball = 0;
@@ -32,8 +17,8 @@ public class Application {
         // 1 게임 반복
         while (startGame) {
             // 랜덤수발생 randomNum
-            String randomNum = rn;
-            System.out.println("randomNum : "+randomNum);
+            String randomNum = getRandomNum();
+             System.out.println("[미리보는 정답] : "+randomNum);
             // 2 입력비교 반복
             while (strike != 3) {
                 // 내숫자입력 userNum
@@ -51,6 +36,23 @@ public class Application {
             // 게임 재시작 [f]
             startGame = restartGame(scanner);
         }
+    }
+
+    // 랜덤수발생 [f]
+    public static String getRandomNum() {
+        // 중복없는 랜덤수 만들기
+        int randomArr[] = new int[3];
+        for (int i=0; i<3; i++) {
+            randomArr[i] = RandomUtils.nextInt(1,9);
+            for (int j=0; j<i; j++) {
+                if(randomArr[i]==randomArr[j]){
+                    i--;
+                }
+            }
+        }
+        String randomNum = Integer.toString(randomArr[0])+Integer.toString(randomArr[1])+Integer.toString(randomArr[2]);
+//        System.out.println(rn);
+        return randomNum;
     }
 
     // 랜덤수 = 내숫자비교 [f]
