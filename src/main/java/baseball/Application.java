@@ -35,9 +35,34 @@ public class Application {
         return numbers;
     }
 
+    public static int[] modUserInput(int userInput) {
+        int MINIMUM = 0;
+        int[] userInputNumbers = new int[NUMBERS_LENGTH];
+        int i = (NUMBERS_LENGTH - 1);
+
+        while (MINIMUM < userInput) {
+            userInputNumbers[i] = userInput % 10;
+            userInput = userInput / 10;
+            i--;
+        }
+
+        for (int j = 0; j < NUMBERS_LENGTH; j++) {
+            System.out.println(userInputNumbers[j]);
+        }
+
+        return numbers;
+    }
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
+        String MESSAGE = "숫자를 입력해주세요 : ";
+        int userInput;
+
         setRandomNumbers();
+        System.out.print(MESSAGE);
+        userInput = scanner.nextInt();
+
+        modUserInput(userInput);
     }
 }
