@@ -1,11 +1,29 @@
 package baseball;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Let's play game");
+
+        // 중복없는 랜덤수 만들기
+        int randomArr[] = new int[3];
+        Random r = new Random();
+        for (int i=0; i<3; i++) {
+            randomArr[i] = r.nextInt(9)+1;
+            for (int j=0; j<i; j++) {
+                if(randomArr[i]==randomArr[j]){
+                    i--;
+                }
+            }
+        }
+        for (int i=0; i<3; i++) {
+            System.out.println(randomArr[i]);
+        }
+        String rn = Integer.toString(randomArr[0])+Integer.toString(randomArr[1])+Integer.toString(randomArr[2]);
+        System.out.println(rn);
 
         boolean startGame = restartGame(scanner);
         int strike = 0;
@@ -14,7 +32,7 @@ public class Application {
         // 1 게임 반복
         while (startGame) {
             // 랜덤수발생 randomNum
-            String randomNum = "123";
+            String randomNum = rn;
             System.out.println("randomNum : "+randomNum);
             // 2 입력비교 반복
             while (strike != 3) {
