@@ -92,6 +92,10 @@ public class Application {
         }
     }
     
+    // 랜덤수발생 [f] RandomUtils 사용
+    public static String getRandomNum() {
+    }
+    
     // 랜덤수 = 내숫자비교 [f]
     public static int[] compareNum(String randomNum, String userNum) {
     }
@@ -111,8 +115,15 @@ public class Application {
 
 ### 📈 Todo
 
-예외처리
-
-utf-8
+예외처리 (입력값 유효성검사)
 
 상수화
+
+```
+5 3 4
+//        String rn = Integer.toString(randomArr[0] + randomArr[1]+ randomArr[2]); // 숫자로 더해서 문자화 5+4+3=12
+//        String rn = randomArr[0] +Integer.toString(randomArr[1])+ randomArr[2]; // 534
+//        String rn = Integer.toString(randomArr[0])+Integer.toString(randomArr[1])+Integer.toString(randomArr[2]); //534
+
+```
+
