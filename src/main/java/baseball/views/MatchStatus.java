@@ -3,9 +3,11 @@ package baseball.views;
 import baseball.elements.Match;
 
 public class MatchStatus {
+
     private static final int minimumNumbersToPrint = 1;
 
-    private MatchStatus() {}
+    private MatchStatus() {
+    }
 
     public static void showMatchResult(Match match) {
         if (match.getBall() >= minimumNumbersToPrint) {
