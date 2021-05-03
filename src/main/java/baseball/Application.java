@@ -5,6 +5,10 @@ import utils.RandomUtils;
 
 public class Application {
 
+    private static final int ALL_BASEBALL_CNT = 3;
+    private static final int START_GAME = 1;
+    private static final int END_GAME = 2;
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Let's play game");
@@ -16,7 +20,7 @@ public class Application {
         while (startGame) {
             String randomNum = getRandomNum();
             System.out.println("[미리보는 정답] : " + randomNum);
-            while (strike != 3) {
+            while (strike != ALL_BASEBALL_CNT) {
                 System.out.print("숫자를 입력해주세요 : ");
                 String userNum = scanner.nextLine();
                 int[] compareResult = compareNum(randomNum, userNum);
@@ -31,8 +35,8 @@ public class Application {
     }
 
     public static String getRandomNum() {
-        int randomArr[] = new int[3];
-        for (int i = 0; i < 3; i++) {
+        int randomArr[] = new int[ALL_BASEBALL_CNT];
+        for (int i = 0; i < ALL_BASEBALL_CNT; i++) {
             randomArr[i] = RandomUtils.nextInt(1, 9);
             for (int j = 0; j < i; j++) {
                 if (randomArr[i] == randomArr[j]) {
@@ -64,9 +68,9 @@ public class Application {
     public static boolean restartGame(Scanner scanner) {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         int restartGameNum = Integer.parseInt(scanner.nextLine());
-        if (restartGameNum != 1 && restartGameNum != 2) {
+        if (restartGameNum != START_GAME && restartGameNum != END_GAME) {
             throw new IllegalArgumentException("error");
-        } else if (restartGameNum == 1) {
+        } else if (restartGameNum == START_GAME) {
             return true;
         }
         return false;
@@ -74,7 +78,7 @@ public class Application {
 
     public static void resultGame(int ball, int strike) {
         String result = "";
-        if (strike == 3) {
+        if (strike == ALL_BASEBALL_CNT) {
             result = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
         } else if (ball == 0 && strike == 0) {
             result = "낫싱";
