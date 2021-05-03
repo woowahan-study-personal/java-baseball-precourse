@@ -38,15 +38,20 @@ public class Application {
         int randomArr[] = new int[ALL_BASEBALL_CNT];
         for (int i = 0; i < ALL_BASEBALL_CNT; i++) {
             randomArr[i] = RandomUtils.nextInt(1, 9);
-            for (int j = 0; j < i; j++) {
-                if (randomArr[i] == randomArr[j]) {
-                    i--;
-                }
-            }
+            i = againDuplication(randomArr, i);
         }
         String randomNum = Integer.toString(randomArr[0]) + Integer.toString(randomArr[1]) + Integer
             .toString(randomArr[2]);
         return randomNum;
+    }
+
+    private static int againDuplication(int[] randomArr, int i) {
+        for (int j = 0; j < i; j++) {
+            if (randomArr[i] == randomArr[j]) {
+                i--;
+            }
+        }
+        return i;
     }
 
     public static int[] compareNum(String randomNum, String userNum) {
