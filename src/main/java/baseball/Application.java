@@ -57,6 +57,30 @@ public class Application {
         return userInputNumbers;
     }
 
+    public static StringBuilder printResult() {
+        StringBuilder message = new StringBuilder("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        StringBuilder result = new StringBuilder("");
+
+        if (strike == NUMBERS_LENGTH) {
+            correctNumbers = true;
+            ball = 0;
+            strike = 0;
+            System.out.println(message);
+            return message;
+        } if (ball != 0) {
+            result.append(ball + "볼 ");
+        } if (strike != 0) {
+            result.append(strike + "스트라이크");
+        } if (ball == 0 && strike ==0) {
+            result.append("낫싱");
+        }
+
+        ball = 0;
+        strike = 0;
+        System.out.println(result);
+        return result;
+    }
+
     public static int findNumberIndex(int userInputNumber) {
         int numberIndex = 0;
         for (int i = 0; i < NUMBERS_LENGTH; i++) {
@@ -103,6 +127,8 @@ public class Application {
             modUserInput(userInput);
 
             compareNumbers();
+
+            printResult();
         }
     }
 }
