@@ -1,5 +1,6 @@
 package baseball.views;
 
+import baseball.elements.NumberTools;
 import java.util.Scanner;
 
 public class PlayerInput {
@@ -15,7 +16,7 @@ public class PlayerInput {
         boolean result = false;
 
         try {
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            PlayMessages.askPlayNewGameMessage();
             number = sc.nextInt();
         } catch (Exception e) {
             throw new IllegalArgumentException("올바른 값을 입력하시기 바랍니다");
@@ -32,8 +33,16 @@ public class PlayerInput {
         return result;
     }
 
-    public static int askPlayerNumber(Scanner sc) throws IllegalArgumentException {
-        System.out.print("숫자를 입력해주세요 : ");
-        return sc.nextInt();
+    public static String askPlayerNumber(Scanner sc) throws IllegalArgumentException {
+        PlayMessages.askNumberInputMessage();
+
+        int playerNumber = sc.nextInt();
+
+        while (!NumberTools.verify(playerNumber)) {
+            PlayMessages.notAllowedNumberRangeMessage();
+            playerNumber = sc.nextInt();
+        }
+
+        return Integer.toString(playerNumber);
     }
 }
