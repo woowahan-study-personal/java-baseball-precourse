@@ -1,22 +1,27 @@
 package baseball.elements;
+
 import utils.RandomUtils;
 
 public class NumberTools {
-    private static final int minimumGameNumber = 111;
-    private static final int maximumGameNumber = 999;
+
+    private static final int minimumGameNumber = 123;
+    private static final int maximumGameNumber = 987;
     private static final int digitLimit = 1;
 
-    private NumberTools() {}
+    private NumberTools() {
+    }
 
     public static boolean verify(int number) {
         String numberString = Integer.toString(number);
 
-        if (minimumGameNumber > number || number > maximumGameNumber || numberString.contains("0")) {
+        if (minimumGameNumber > number || number > maximumGameNumber || numberString
+            .contains("0")) {
             return false;
         }
 
         for (char digit : numberString.toCharArray()) {
-            if (numberString.chars().filter(currentDigit -> currentDigit == digit).count() > digitLimit) {
+            if (numberString.chars().filter(currentDigit -> currentDigit == digit).count()
+                > digitLimit) {
                 return false;
             }
         }
