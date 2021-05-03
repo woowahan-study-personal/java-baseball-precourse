@@ -3,10 +3,12 @@ package baseball.views;
 import java.util.Scanner;
 
 public class PlayerInput {
+
     private static final int runNewGame = 1;
     private static final int quitGame = 2;
 
-    private PlayerInput() {}
+    private PlayerInput() {
+    }
 
     public static boolean askNewGame(Scanner sc) {
         int number;
@@ -30,7 +32,7 @@ public class PlayerInput {
         return result;
     }
 
-    public static int askPlayerNumber(Scanner sc) throws IllegalArgumentException{
+    public static int askPlayerNumber(Scanner sc) throws IllegalArgumentException {
         System.out.print("숫자를 입력해주세요 : ");
         return sc.nextInt();
     }
