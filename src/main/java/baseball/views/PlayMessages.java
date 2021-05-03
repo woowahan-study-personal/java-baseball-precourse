@@ -6,7 +6,7 @@ public class PlayMessages {
     }
 
     public static void notAllowedNumberRangeMessage() {
-        System.out.print("입력이 허용된 숫자는 0을 포함하지 않는 정수 111 ~ 999까지입니다. 다시 입력하시기 바랍니다");
+        System.out.print("입력이 허용된 숫자는 0을 포함하지 않는 정수 111 ~ 999까지입니다. 다시 입력하시기 바랍니다: ");
     }
 
     public static void askNumberInputMessage() {
