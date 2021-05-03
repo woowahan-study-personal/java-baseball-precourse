@@ -12,6 +12,7 @@ public class Application {
     private static int[] userInputNumbers = new int[NUMBERS_LENGTH];
     private static int ball = 0;
     private static int strike = 0;
+    private static Object IllegalArgumentException;
 
     public static int getRandomNumber() {
         int START_NUMBER = 1;
@@ -50,10 +51,6 @@ public class Application {
             i--;
         }
 
-        for (int j = 0; j < NUMBERS_LENGTH; j++) {
-            System.out.println(userInputNumbers[j]);
-        }
-
         return userInputNumbers;
     }
 
@@ -62,10 +59,10 @@ public class Application {
         StringBuilder result = new StringBuilder("");
 
         if (strike == NUMBERS_LENGTH) {
-            correctNumbers = true;
             ball = 0;
             strike = 0;
             System.out.println(message);
+            correctNumbers = true;
             return message;
         } if (ball != 0) {
             result.append(ball + "볼 ");
@@ -113,22 +110,50 @@ public class Application {
         return "";
     }
 
+    public static boolean isPlay(Scanner scanner) {
+        String message = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+        int choice;
+        boolean result = true;
+
+        System.out.println(message);
+        choice = scanner.nextInt();
+
+        if (choice != 1 && choice != 2) {
+            throw new IllegalArgumentException("1 또는 2를 입력해 주세요.");
+        } else if (choice == 2) {
+            result = false;
+        } else if (choice == 1) {
+            result = true;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
-        String MESSAGE = "숫자를 입력해주세요 : ";
-        int userInput;
+        boolean play = true;
 
-        setRandomNumbers();
-        while (!correctNumbers) {
-            System.out.print(MESSAGE);
-            userInput = scanner.nextInt();
+        while (play) {
+            String MESSAGE = "숫자를 입력해주세요 : ";
+            int userInput;
 
-            modUserInput(userInput);
+            setRandomNumbers();
 
-            compareNumbers();
+            correctNumbers = false;
 
-            printResult();
+            while (!correctNumbers) {
+                System.out.print(MESSAGE);
+                userInput = scanner.nextInt();
+
+                modUserInput(userInput);
+
+                compareNumbers();
+
+                printResult();
+            }
+
+            play = isPlay(scanner);
+
         }
     }
 }
