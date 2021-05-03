@@ -22,6 +22,6 @@ public class Game {
     }
 
     public Match runMatch(String givenNumber) {
-        return new Match(this.getGameNumber(), givenNumber);
+        return Match.receiveMatchResultByNumbers(this.getGameNumber(), givenNumber);
     }
 }
