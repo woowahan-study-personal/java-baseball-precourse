@@ -10,6 +10,8 @@ public class Application {
     private static boolean correctNumbers = false;
     private static int[] numbers = new int[NUMBERS_LENGTH];
     private static int[] userInputNumbers = new int[NUMBERS_LENGTH];
+    private static int ball = 0;
+    private static int strike = 0;
 
     public static int getRandomNumber() {
         int START_NUMBER = 1;
@@ -55,12 +57,34 @@ public class Application {
         return userInputNumbers;
     }
 
-    // userInputNumber를 for문(세번) 돌면서
-    // numbers에 userInputNumber가 있는지 확인하는 기능
+    public static int findNumberIndex(int userInputNumber) {
+        int numberIndex = 0;
+        for (int i = 0; i < NUMBERS_LENGTH; i++) {
+            if (numbers[i] == userInputNumber) {
+                numberIndex = i;
+            }
+        }
+        return numberIndex;
+    }
+
+    public static String checkStrikeAndBall(boolean compareResult, int userInputNumber, int userInputIndex) {
+        int numbersIndex = findNumberIndex(userInputNumber);
+
+        if (compareResult == true) {
+            if (numbersIndex == userInputIndex) {
+                strike += 1;
+            } else {
+                ball += 1;
+            }
+        }
+        return "";
+    }
+
     public static String compareNumbers() {
         for (int i = 0; i < NUMBERS_LENGTH; i++) {
             int userInputNumber = userInputNumbers[i];
             boolean compareResult = (IntStream.of(numbers).anyMatch(x -> x == userInputNumber));
+            checkStrikeAndBall(compareResult, userInputNumber, i);
         }
         return "";
     }
@@ -72,13 +96,9 @@ public class Application {
         int userInput;
 
         setRandomNumbers();
-        // 여기서 while문 시작
-        // modUserInput에서 correctNumbers가 true값으로 바뀌면 while문 종료
         while (!correctNumbers) {
             System.out.print(MESSAGE);
             userInput = scanner.nextInt();
-            // userInput으로 Exception 띄우기
-            // => 숫자 아닌 문자열일 때, 세자리 초과 숫자일 때, 같은 숫자 중복 입력했을 때
 
             modUserInput(userInput);
 
