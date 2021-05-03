@@ -1,6 +1,6 @@
 package baseball.views;
 
-import baseball.elements.NumberTools;
+import baseball.tools.NumberTools;
 import java.util.Scanner;
 
 public class PlayerInput {

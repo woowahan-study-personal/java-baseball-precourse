@@ -1,5 +1,7 @@
 package baseball.elements;
 
+import baseball.tools.NumberTools;
+
 public class Game {
 
     private static final int targetStrikeCount = 3;

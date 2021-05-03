@@ -1,4 +1,4 @@
-package baseball.elements;
+package baseball.tools;
 
 import utils.RandomUtils;
 
