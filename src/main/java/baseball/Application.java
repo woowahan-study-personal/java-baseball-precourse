@@ -1,12 +1,15 @@
 package baseball;
 
 import utils.RandomUtils;
-import java.util.stream.IntStream;
+
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Application {
     private static final int NUMBERS_LENGTH = 3;
-    private static final int[] numbers = new int[NUMBERS_LENGTH];
+    private static boolean correctNumbers = false;
+    private static int[] numbers = new int[NUMBERS_LENGTH];
+    private static int[] userInputNumbers = new int[NUMBERS_LENGTH];
 
     public static int getRandomNumber() {
         int START_NUMBER = 1;
@@ -37,7 +40,6 @@ public class Application {
 
     public static int[] modUserInput(int userInput) {
         int MINIMUM = 0;
-        int[] userInputNumbers = new int[NUMBERS_LENGTH];
         int i = (NUMBERS_LENGTH - 1);
 
         while (MINIMUM < userInput) {
@@ -50,7 +52,17 @@ public class Application {
             System.out.println(userInputNumbers[j]);
         }
 
-        return numbers;
+        return userInputNumbers;
+    }
+
+    // userInputNumber를 for문(세번) 돌면서
+    // numbers에 userInputNumber가 있는지 확인하는 기능
+    public static String compareNumbers() {
+        for (int i = 0; i < NUMBERS_LENGTH; i++) {
+            int userInputNumber = userInputNumbers[i];
+            boolean compareResult = (IntStream.of(numbers).anyMatch(x -> x == userInputNumber));
+        }
+        return "";
     }
 
     public static void main(String[] args) {
@@ -60,9 +72,17 @@ public class Application {
         int userInput;
 
         setRandomNumbers();
-        System.out.print(MESSAGE);
-        userInput = scanner.nextInt();
+        // 여기서 while문 시작
+        // modUserInput에서 correctNumbers가 true값으로 바뀌면 while문 종료
+        while (!correctNumbers) {
+            System.out.print(MESSAGE);
+            userInput = scanner.nextInt();
+            // userInput으로 Exception 띄우기
+            // => 숫자 아닌 문자열일 때, 세자리 초과 숫자일 때, 같은 숫자 중복 입력했을 때
 
-        modUserInput(userInput);
+            modUserInput(userInput);
+
+            compareNumbers();
+        }
     }
 }
