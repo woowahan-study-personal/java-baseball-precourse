@@ -12,11 +12,7 @@ public class Game {
         return Integer.toString(NumberTools.generateRandomNumber());
     }
 
-    private Match runMatch(String givenNumber) {
-        return new Match(this.getGameNumber(), givenNumber);
-    }
-
-    public String getGameNumber() {
+    private String getGameNumber() {
         return this.gameNumber;
     }
 
@@ -24,7 +20,7 @@ public class Game {
         return match.getStrike() == targetStrikeCount;
     }
 
-    public Match submitNumber(String number) {
-        return this.runMatch(number);
+    public Match runMatch(String givenNumber) {
+        return new Match(this.getGameNumber(), givenNumber);
     }
 }
