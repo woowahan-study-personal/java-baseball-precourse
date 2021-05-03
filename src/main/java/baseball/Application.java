@@ -3,6 +3,7 @@ package baseball;
 import baseball.elements.Game;
 import baseball.elements.NumberTools;
 import baseball.elements.Match;
+import baseball.views.PlayMessages;
 import baseball.views.PlayerInput;
 import baseball.views.MatchStatus;
 import java.util.Scanner;
@@ -17,11 +18,11 @@ public class Application {
             int playerNumber = PlayerInput.askPlayerNumber(sc);
 
             if (!NumberTools.verify(playerNumber)) {
-                System.out.print("허용된 숫자는 0을 포함하지 않는 정수 111 ~ 999까지입니다. 다시 입력하시기 바랍니다");
+                PlayMessages.notAllowedNumberRangeMessage();
                 continue;
             }
 
-            Match match = game.submitNumber(Integer.toString(playerNumber));
+            Match match = game.runMatch(Integer.toString(playerNumber));
             MatchStatus.showMatchResult(match);
 
             if (game.checkGame(match)) {
@@ -35,7 +36,7 @@ public class Application {
 
         while(runGame) {
             gameRun(scanner);
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            PlayMessages.gameEndMessage();
             runGame = PlayerInput.askNewGame(scanner);
         }
     }
