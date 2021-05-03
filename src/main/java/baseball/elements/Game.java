@@ -1,8 +1,9 @@
 package baseball.elements;
 
 public class Game {
-    private final String gameNumber;
+
     private static final int targetStrikeCount = 3;
+    private final String gameNumber;
 
     public Game() {
         this.gameNumber = makeNewNumber();
