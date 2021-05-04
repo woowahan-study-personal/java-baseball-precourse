@@ -5,7 +5,9 @@ public class Match {
     private int ball = 0;
     private int strike = 0;
 
-    private Match() {
+    private Match(int ball, int strike) {
+        this.ball = ball;
+        this.strike = strike;
     }
 
     public int getBall() {
@@ -17,16 +19,17 @@ public class Match {
     }
 
     public static Match receiveMatchResultByNumbers(String givenNumber, String targetNumber) {
-        Match match = new Match();
+        int ball = 0;
+        int strike = 0;
 
         for (int i = 0; i < givenNumber.length(); i++) {
             if (givenNumber.charAt(i) == targetNumber.charAt(i)) {
-                match.strike += 1;
+                strike++;
             } else if (targetNumber.indexOf(givenNumber.charAt(i)) != -1) {
-                match.ball += 1;
+                ball++;
             }
         }
 
-        return match;
+        return new Match(ball, strike);
     }
 }
