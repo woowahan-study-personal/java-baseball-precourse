@@ -58,16 +58,24 @@ public class Application {
         int[] compareResult = {0, 0};
         for (int i = 0; i < userNum.length(); i++) {
             for (int j = 0; j < randomNum.length(); j++) {
-                if (userNum.substring(i, i + 1).equals(randomNum.substring(j, j + 1))) {
-                    if (i == j) {
-                        compareResult[1] += 1;
-                    } else {
-                        compareResult[0] += 1;
-                    }
-                }
+                checkBallAndStrike(randomNum, userNum, compareResult, i, j);
             }
         }
         return compareResult;
+    }
+
+    private static void checkBallAndStrike(String randomNum, String userNum, int[] compareResult, int i,
+        int j) {
+        String x = randomNum.substring(5);
+        StringBuilder a = new StringBuilder();
+        a.append("1");
+        if (userNum.substring(i, i + 1).equals(randomNum.substring(j, j + 1))) {
+            if (i == j) {
+                compareResult[1] += 1;
+            } else {
+                compareResult[0] += 1;
+            }
+        }
     }
 
     public static boolean restartGame(Scanner scanner) {
