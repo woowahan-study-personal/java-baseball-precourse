@@ -93,13 +93,12 @@ public class Application {
         }
     }
 
-    public static String compareNumbers() {
+    public static void compareNumbers() {
         for (int i = 0; i < NUMBERS_LENGTH; i++) {
             int userInputNumber = userInputNumbers[i];
             boolean compareResult = (IntStream.of(numbers).anyMatch(x -> x == userInputNumber));
             checkStrikeAndBall(compareResult, userInputNumber, i);
         }
-        return "";
     }
 
     public static boolean isPlay(Scanner scanner) {
