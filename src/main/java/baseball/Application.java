@@ -38,7 +38,7 @@ public class Application {
         }
     }
 
-    public static int[] modUserInput(int userInput) {
+    public static void modUserInput(int userInput) {
         int MINIMUM = 0;
         int i = (NUMBERS_LENGTH - 1);
 
@@ -47,8 +47,6 @@ public class Application {
             userInput = userInput / 10;
             i--;
         }
-
-        return userInputNumbers;
     }
 
     public static StringBuilder printResult() {
