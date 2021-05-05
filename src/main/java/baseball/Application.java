@@ -84,7 +84,7 @@ public class Application {
     public static void checkStrikeAndBall(boolean compareResult, int userInputNumber, int userInputIndex) {
         int numbersIndex = findNumberIndex(userInputNumber);
 
-        if (compareResult == true) {
+        if (compareResult) {
             if (numbersIndex == userInputIndex) {
                 strike += 1;
             } else {
