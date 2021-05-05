@@ -49,7 +49,7 @@ public class Application {
         }
     }
 
-    public static StringBuilder printResult() {
+    public static void printResult() {
         StringBuilder message = new StringBuilder("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         StringBuilder result = new StringBuilder("");
 
@@ -58,7 +58,6 @@ public class Application {
             strike = 0;
             System.out.println(message);
             correctNumbers = true;
-            return message;
         } if (ball != 0) {
             result.append(ball + "볼 ");
         } if (strike != 0) {
@@ -70,7 +69,6 @@ public class Application {
         ball = 0;
         strike = 0;
         System.out.println(result);
-        return result;
     }
 
     public static int findNumberIndex(int userInputNumber) {
