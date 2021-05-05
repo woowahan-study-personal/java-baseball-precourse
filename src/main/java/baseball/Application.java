@@ -12,7 +12,6 @@ public class Application {
     private static int[] userInputNumbers = new int[NUMBERS_LENGTH];
     private static int ball = 0;
     private static int strike = 0;
-    private static Object IllegalArgumentException;
 
     public static int getRandomNumber() {
         int START_NUMBER = 1;
@@ -134,16 +133,15 @@ public class Application {
         boolean play = true;
 
         while (play) {
-            String MESSAGE = "숫자를 입력해주세요 : ";
-            int userInput;
-
             setRandomNumbers();
+
+            String MESSAGE = "숫자를 입력해주세요 : ";
 
             correctNumbers = false;
 
             while (!correctNumbers) {
                 System.out.print(MESSAGE);
-                userInput = scanner.nextInt();
+                int userInput = scanner.nextInt();
 
                 modUserInput(userInput);
 
