@@ -103,13 +103,12 @@ public class Application {
 
     public static boolean isPlay(Scanner scanner) {
         String message = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-        int choice;
         int playAgain = 1;
         int end = 2;
         boolean result = true;
 
         System.out.println(message);
-        choice = scanner.nextInt();
+        int choice = scanner.nextInt();
 
         if (choice != playAgain && choice != end) {
             throw new IllegalArgumentException("1 또는 2를 입력해 주세요.");
