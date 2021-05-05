@@ -81,7 +81,7 @@ public class Application {
         return numberIndex;
     }
 
-    public static String checkStrikeAndBall(boolean compareResult, int userInputNumber, int userInputIndex) {
+    public static void checkStrikeAndBall(boolean compareResult, int userInputNumber, int userInputIndex) {
         int numbersIndex = findNumberIndex(userInputNumber);
 
         if (compareResult == true) {
@@ -91,7 +91,6 @@ public class Application {
                 ball += 1;
             }
         }
-        return "";
     }
 
     public static String compareNumbers() {
