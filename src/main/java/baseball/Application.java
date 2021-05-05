@@ -110,14 +110,11 @@ public class Application {
         System.out.println(message);
         int choice = scanner.nextInt();
 
-        if (choice != playAgain && choice != end) {
+        if (choice != 1 && choice != 2) {
             throw new IllegalArgumentException("1 또는 2를 입력해 주세요.");
-        } else if (choice == end) {
-            result = false;
-        } else if (choice == playAgain) {
-            result = true;
         }
-        return result;
+
+        return choice != 2;
     }
 
     public static void main(String[] args) {
