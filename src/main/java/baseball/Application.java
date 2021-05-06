@@ -2,40 +2,45 @@ package baseball;
 
 import java.util.Scanner;
 import utils.RandomUtils;
+import utils.ReGame;
+import view.InputView;
 
 public class Application {
-    public static final int NUMBER_OF_DIGIT = 3;
-    public static final int START_OF_RAND_NUMBER = 0;
-    public static final int END_OF_RAND_NUMBER = 9;
-    public static final int LENGTH_OF_POSSIBLE_NUMBER = 10;
+    private static final int NUMBER_OF_DIGIT = 3;
+    private static final int START_OF_RAND_NUMBER = 0;
+    private static final int END_OF_RAND_NUMBER = 9;
+    private static final int LENGTH_OF_POSSIBLE_NUMBER = 10;
 
     public static int[] getRandomNumbers() {
         int[] numbers = new int[NUMBER_OF_DIGIT];
         boolean[] visitNumbers = new boolean[LENGTH_OF_POSSIBLE_NUMBER];
         for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
-            while (true) {
-                int number = RandomUtils.nextInt(START_OF_RAND_NUMBER, END_OF_RAND_NUMBER);
-                if (i == 0 & number == 0) {
-                    continue;
-                }
-                if (visitNumbers[number]) {
-                    continue;
-                }
-                numbers[i] = number;
-                visitNumbers[number] = true;
-                break;
-            }
+            int validNumber = makeValidNum(i, visitNumbers);
+            numbers[i] = validNumber;
+            visitNumbers[validNumber] = true;
         }
         return numbers;
     }
 
+    public static int makeValidNum(int idx, boolean[] visitNumbers) {
+        while (true) {
+            int number = RandomUtils.nextInt(START_OF_RAND_NUMBER, END_OF_RAND_NUMBER);
+            if (idx == 0 & number == 0) {
+                continue;
+            }
+            if (visitNumbers[number]) {
+                continue;
+            }
+            return number;
+        }
+    }
+
     public static int[] userNumbersToArray(int userNumbers) {
         int[] userNumberArray = new int[NUMBER_OF_DIGIT];
-        userNumberArray[0] = userNumbers / 100;
-        userNumbers %= 100;
-        userNumberArray[1] = userNumbers / 10;
-        userNumbers %= 10;
-        userNumberArray[2] = userNumbers;
+        for (int i=0; i < NUMBER_OF_DIGIT; i++) {
+            userNumberArray[i] = (int) (userNumbers / Math.pow(10, NUMBER_OF_DIGIT-1-i));
+            userNumbers %= Math.pow(10, NUMBER_OF_DIGIT-1-i);
+        }
         return userNumberArray;
     }
 
@@ -46,21 +51,22 @@ public class Application {
     }
 
     public static int[] getUserNumbers(Scanner scanner) {
-        System.out.print("숫자를 입력해주세요 : ");
+        InputView.printGetNumbers();
         int userNumbers = scanner.nextInt();
-        if (userNumbers >= Math.pow(10, NUMBER_OF_DIGIT) || userNumbers < Math.pow(10, NUMBER_OF_DIGIT - 1)) {
-            throw new IllegalArgumentException("세 자리 숫자를 입력해주세요");
-        }
+        validNumOfDigit(userNumbers);
         int[] userNumberArray = userNumbersToArray(userNumbers);
         duplicateCheck(userNumberArray);
         return userNumberArray;
     }
 
-    public static boolean checkStrike(int userNumber, int randomNumber) {
-        if (userNumber == randomNumber) {
-            return true;
+    public static void validNumOfDigit(int userNumbers) {
+        if (userNumbers >= Math.pow(10, NUMBER_OF_DIGIT) || userNumbers < Math.pow(10, NUMBER_OF_DIGIT - 1)) {
+            throw new IllegalArgumentException(NUMBER_OF_DIGIT + "자리 숫자를 입력해주세요");
         }
-        return false;
+    }
+
+    public static boolean checkStrike(int userNumber, int randomNumber) {
+        return userNumber == randomNumber;
     }
 
     public static boolean checkBall(int userNumbers, int[] randomNumbers) {
@@ -72,17 +78,15 @@ public class Application {
         return false;
     }
 
-    public static int[] checkResult(int[] userNumbers, int[] randomNumbers) {
+    public static int[] getResult(int[] userNumbers, int[] randomNumbers) {
         int[] result = new int[2];
         int strike = 0;
         int ball = 0;
         for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
             if (checkStrike(userNumbers[i], randomNumbers[i])) {
                 strike++;
-            } else {
-                if (checkBall(userNumbers[i], randomNumbers)) {
-                    ball++;
-                }
+            } else if (checkBall(userNumbers[i], randomNumbers)){
+                ball++;
             }
         }
         result[0] = strike;
@@ -108,11 +112,11 @@ public class Application {
     }
 
     public static boolean isReGame(boolean flag, Scanner scanner) {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        InputView.printIsRegame();
         int reGameFlag = scanner.nextInt();
-        if (reGameFlag != 1 & reGameFlag != 2) {
+        if (reGameFlag != ReGame.REGAME.getValue() & reGameFlag != ReGame.STOP.getValue()) {
             throw new IllegalArgumentException("1이나 2를 입력해주세요!");
-        } else if (reGameFlag == 2) {
+        } else if (reGameFlag == ReGame.STOP.getValue()) {
             flag = false;
         }
         return flag;
@@ -124,12 +128,12 @@ public class Application {
         while (flag) {
             int strike = 0;
             int[] randomNumbers = getRandomNumbers();
-            for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
-                System.out.println(randomNumbers[i]);
-            }
+//            for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
+//                System.out.println(randomNumbers[i]);
+//            }
             while (strike != NUMBER_OF_DIGIT) {
                 int[] userNumbers = getUserNumbers(scanner);
-                int[] result = checkResult(userNumbers, randomNumbers);
+                int[] result = getResult(userNumbers, randomNumbers);
                 strike = result[0];
                 int ball = result[1];
                 printResult(ball, strike);
