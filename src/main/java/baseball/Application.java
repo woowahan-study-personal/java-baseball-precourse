@@ -50,13 +50,12 @@ public class Application {
     }
 
     public static void printResult() {
-        StringBuilder message = new StringBuilder("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         StringBuilder result = new StringBuilder("");
 
         if (strike == NUMBERS_LENGTH) {
             ball = 0;
             strike = 0;
-            System.out.println(message);
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             correctNumbers = true;
         } else if (ball != 0) {
             result.append(ball + "볼 ");
