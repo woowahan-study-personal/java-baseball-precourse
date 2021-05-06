@@ -109,11 +109,11 @@ public class Application {
         System.out.println(message);
         int choice = scanner.nextInt();
 
-        if (choice != 1 && choice != 2) {
+        if (choice != playAgain && choice != end) {
             throw new IllegalArgumentException("1 또는 2를 입력해 주세요.");
         }
 
-        return choice != 2;
+        return choice != end;
     }
 
     public static void main(String[] args) {
