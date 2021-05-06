@@ -28,7 +28,7 @@ public class Application {
         int i = 0;
         while (i < NUMBERS_LENGTH) {
             int number = getRandomNumber();
-            if (checkRandomNumber(number) == false) {
+            if (!checkRandomNumber(number)) {
                 numbers[i] = number;
                 i++;
             }
