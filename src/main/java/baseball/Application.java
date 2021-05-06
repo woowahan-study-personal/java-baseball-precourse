@@ -33,7 +33,7 @@ public class Application {
                 i++;
             }
         }
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < NUMBERS_LENGTH; j++) {
             System.out.println(numbers[j]);
         }
     }
