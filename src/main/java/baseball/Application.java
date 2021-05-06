@@ -23,13 +23,14 @@ public class Application {
             while (isOver) {
                 int cntBall = 0;
                 int cntStrike = 0;
+                int lenOfCount = 3;
 
                 System.out.println("Input numbers : ");
                 int userInput = scanner.nextInt();
 
                 setUserNum(userNum, userInput);
 
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < lenOfCount; i++) {
                     cntStrike = countStrike(userNum, randNum, i, cntStrike);
                     cntBall = countBall(userNum, randNum, i, cntBall);
                 }
