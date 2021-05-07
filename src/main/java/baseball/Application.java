@@ -8,7 +8,7 @@ import java.util.Iterator;
 import utils.RandomUtils;
 
 public class Application {
-    private static int lenOfCount = 3;
+    private static final int lenOfCount = 3;
     private static Boolean isReplay = true;
     private static Boolean isOver = true;
     private static int cntBall = 0;
@@ -19,8 +19,8 @@ public class Application {
         // TODO 구현 진행
 
         while (isReplay) {
-            int[] userNum = new int[3];
-            int[] randNum = new int[3];
+            int[] userNum = new int[lenOfCount];
+            int[] randNum = new int[lenOfCount];
             Set<Integer> randSet = new HashSet<Integer>();
             isOver = true;
             setRandomNum(randSet, randNum);
@@ -94,7 +94,7 @@ public class Application {
             randSet.add(RandomUtils.nextInt(1, 9));
         } while (randSet.size() < lenOfCount);
         Iterator<Integer> iter = randSet.iterator();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < lenOfCount; i++) {
             randNum[i] = (int) iter.next();
         }
     }
