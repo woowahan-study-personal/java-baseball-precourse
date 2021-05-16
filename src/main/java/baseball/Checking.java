@@ -15,11 +15,12 @@ public class Checking {
         int result = 0;
         for (int i = 0; i < 3; i++) {
             int checkNumber = playerList.get(i);
-            if (computerList.contains(checkNumber)){
-                result ++;
+            if (computerList.contains(checkNumber)) {
+                result++;
             }
         }
-        answer = ResultTell.HowResult(result, computerList, playerList);
+        answer = ResultTell
+            .HowResult(result, playerList.toArray().length, computerList, playerList);
         System.out.println(answer);
         return answer;
     }
