@@ -1,6 +1,7 @@
 package game;
 
 import game.ball.Transforming;
+import views.Error;
 import views.View;
 
 import java.util.List;
@@ -8,18 +9,28 @@ import java.util.Scanner;
 
 public class Round {
 
-    public static void Rounds(int numberLength, List<Integer> computerList, Scanner scanner){
+    public static String Rounds(int numberLength, List<Integer> computerList, Scanner scanner) {
+        String result = null;
         View.Start(); // 숫자 입력
-        // while
         int playerNumber = scanner.nextInt();
-        if (!Check.ValidBalls(playerNumber)) {
-            View.DuplicateError();
-            return ;
-        } else if (Integer.toString(playerNumber).length() != numberLength) {
-            View.LengthError(numberLength);
-            return;
+        if (Valid(playerNumber, numberLength)) {
+            List<Integer> playerList = Transforming.NumbertoList(playerNumber);
+            List<Integer> SandB = Check.SB(playerList, computerList);
+            result = View.Result(SandB);
+            //
+            System.out.println(result);
         }
-        List<Integer> playerList = Transforming.NumbertoList(playerNumber);
-        System.out.println(Check.SB(playerList,computerList));
+        return result;
+    }
+
+    public static boolean Valid(int playerNumber, int numberLength) {
+        if (!Check.ValidBalls(playerNumber)) {
+            Error.DuplicateError();
+            return false;
+        } else if (Integer.toString(playerNumber).length() != numberLength) {
+            Error.LengthError(numberLength);
+            return false;
+        }
+        return true;
     }
 }

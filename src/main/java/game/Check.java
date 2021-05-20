@@ -11,7 +11,7 @@ public class Check {
     public static boolean ValidBalls(int num) {
         List<Integer> checkList = Transforming.NumbertoList(num);
         for (int i = 0; i < checkList.size() - 1; i++) {
-            if (checkList.get(i) == 0) {
+            if (checkList.get(i + 1) == 0) {
                 return false;
             }
             if (checkList.subList(i + 1, checkList.size()).contains(checkList.get(i))) {
@@ -34,8 +34,6 @@ public class Check {
                 ball--;
             }
         }
-        return new ArrayList<Integer>(Arrays.asList(strike, ball));
-
+        return new ArrayList<>(Arrays.asList(strike, ball));
     }
-
 }

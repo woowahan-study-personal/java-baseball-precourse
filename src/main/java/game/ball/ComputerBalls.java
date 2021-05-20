@@ -3,8 +3,6 @@ package game.ball;
 import game.Check;
 import utils.RandomUtils;
 
-import java.util.List;
-
 public class ComputerBalls {
 
     public static int Value(int length) {

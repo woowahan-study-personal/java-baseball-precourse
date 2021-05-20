@@ -11,8 +11,6 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         int numberLength = 3;
         boolean gamePlay = true;
-//            Continue.InsertNumber();
         MainGame.PlayGame(numberLength, scanner);
-//            gamePlay = Check.TobeContinue(Integer.parseInt(scanner.next()));
     }
 }
