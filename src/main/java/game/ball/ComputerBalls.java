@@ -4,7 +4,7 @@ import utils.RandomUtils;
 
 import java.util.List;
 
-public class MakeBalls {
+public class ComputerBalls {
     public static int Value(int length){
         int minNumber = 0;
         int maxNumber = 0;

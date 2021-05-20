@@ -1,11 +1,14 @@
 package game;
 
-import java.util.List;
+import views.View;
+
+import java.util.Scanner;
 
 public class PlayGame {
 
-    public static void PlayGame(int numberLength) {
-
+    public static void PlayGame(int numberLength, Scanner scanner) {
+        View.play(scanner);
+        
 
     }
 }
