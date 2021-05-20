@@ -1,6 +1,5 @@
 package game.ball;
 
-import game.Check;
 import utils.RandomUtils;
 
 public class ComputerBalls {

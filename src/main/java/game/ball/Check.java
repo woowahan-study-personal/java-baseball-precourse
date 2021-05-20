@@ -1,6 +1,4 @@
-package game;
-
-import game.ball.Transforming;
+package game.ball;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +7,7 @@ import java.util.List;
 public class Check {
 
     public static boolean ValidBalls(int num) {
-        List<Integer> checkList = Transforming.NumbertoList(num);
+        List<Integer> checkList = Transforming.NumberList(num);
         for (int i = 0; i < checkList.size() - 1; i++) {
             if (checkList.get(i + 1) == 0) {
                 return false;
