@@ -1,5 +1,6 @@
 package baseball;
 
+import game.Check;
 import game.PlayGame;
 
 import java.util.Scanner;
@@ -17,6 +18,5 @@ public class Application {
 //            gamePlay = Check.TobeContinue(Integer.parseInt(scanner.next()));
             break;
         }
-
     }
 }
