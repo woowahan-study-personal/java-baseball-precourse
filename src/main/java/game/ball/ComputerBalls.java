@@ -4,7 +4,7 @@ import utils.RandomUtils;
 
 public class ComputerBalls {
 
-    public static int Value(int length) {
+    public static int value(int length) {
         int minNumber = 0;
         int maxNumber = 0;
         for (int i = 1; i <= length; i++) {
@@ -16,10 +16,10 @@ public class ComputerBalls {
         return RandomUtils.nextInt(minNumber, maxNumber);
     }
 
-    public static int ComputerBall(int lengthNumber) {
+    public static int computerBall(int lengthNumber) {
         while (true) {
-            int checkNumber = Value(lengthNumber);
-            if (Check.ValidBalls(checkNumber)) {
+            int checkNumber = value(lengthNumber);
+            if (Check.validBalls(checkNumber)) {
                 return checkNumber;
             }
         }

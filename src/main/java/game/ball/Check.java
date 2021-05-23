@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Check {
 
-    public static boolean ValidBalls(int num) {
-        List<Integer> checkList = Transforming.NumberList(num);
+    public static boolean validBalls(int num) {
+        List<Integer> checkList = Transforming.numberList(num);
         for (int i = 0; i < checkList.size() - 1; i++) {
             if (checkList.get(i + 1) == 0) {
                 return false;
@@ -19,7 +19,7 @@ public class Check {
         return true;
     }
 
-    public static List<Integer> SB(List<Integer> PlayerList, List<Integer> ComputerList) {
+    public static List<Integer> sb(List<Integer> PlayerList, List<Integer> ComputerList) {
         int strike = 0;
         int ball = 0;
 

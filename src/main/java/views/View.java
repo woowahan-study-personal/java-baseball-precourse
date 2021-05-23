@@ -4,11 +4,11 @@ import java.util.List;
 
 public class View {
 
-    public static void Start() {
+    public static void start() {
         System.out.print("숫자를 입력해 주세요 : ");
     }
 
-    public static String Result(List<Integer> SandB) {
+    public static String result(List<Integer> SandB) {
         int strike = SandB.get(0);
         int ball = SandB.get(1);
         String result;
@@ -24,12 +24,8 @@ public class View {
         return result;
     }
 
-    public static void EndGame(int num) {
+    public static void endGame(int num) {
         System.out.println(num + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
     }
-
-
-//    게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
-
 }

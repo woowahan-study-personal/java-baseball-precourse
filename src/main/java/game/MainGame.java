@@ -9,33 +9,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MainGame {
-    private static final int continueGame = 1;
-    private static final int gameover = 2;
+    private static final int CONTINUE_GAME = 1;
+    private static final int GAMEOVER = 2;
 
-    public static void PlayGame(int numberLength, Scanner scanner) {
-        List<Integer> computerList = Transforming.NumberList(ComputerBalls.ComputerBall(numberLength));
-        System.out.println(computerList); // 테스트를 위해서 넣었음
+    public static void playGame(int numberLength, Scanner scanner) {
+        List<Integer> computerList = Transforming.numberList(ComputerBalls.computerBall(numberLength));
         String result = "";
         while (!result.equals(numberLength + "스트라이크")) {
-            result = Round.Rounds(numberLength, computerList, scanner);
+            result = Round.rounds(numberLength, computerList, scanner);
         }
-        View.EndGame(numberLength);
-        Continue(numberLength, scanner);
+        View.endGame(numberLength);
+        continueGame(numberLength, scanner);
     }
 
-    public static void Continue(int numberLength, Scanner scanner) {
+    public static void continueGame(int numberLength, Scanner scanner) {
         int coin = scanner.nextInt();
-        try{
-            if (coin == continueGame) {
-                PlayGame(numberLength, scanner);
-            } else if (coin != gameover) {
-                ViewError.NumberError();
-                Continue(numberLength, scanner);
+        try {
+            if (coin == CONTINUE_GAME) {
+                playGame(numberLength, scanner);
+            } else if (coin != GAMEOVER) {
+                ViewError.numberError();
+                continueGame(numberLength, scanner);
             }
         } catch (Exception e) {
-            ViewError.NumberError();
-            Continue(numberLength, scanner);
+            ViewError.numberError();
+            continueGame(numberLength, scanner);
         }
-
     }
 }
