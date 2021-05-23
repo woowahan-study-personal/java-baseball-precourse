@@ -12,11 +12,11 @@ public class Round {
 
     public static String rounds(int numberLength, List<Integer> computerList, Scanner scanner) {
         String result = null;
-        View.start(); // 숫자 입력
+        View.start();
         int playerNumber = scanner.nextInt();
         if (valid(playerNumber, numberLength)) {
             List<Integer> playerList = Transforming.numberList(playerNumber);
-            List<Integer> SandB = Check.sb(playerList, computerList);
+            List<Integer> SandB = Check.strikeBalls(playerList, computerList);
             result = View.result(SandB);
             System.out.println(result);
         }

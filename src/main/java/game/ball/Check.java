@@ -19,7 +19,7 @@ public class Check {
         return true;
     }
 
-    public static List<Integer> sb(List<Integer> PlayerList, List<Integer> ComputerList) {
+    public static List<Integer> strikeBalls(List<Integer> PlayerList, List<Integer> ComputerList) {
         int strike = 0;
         int ball = 0;
 
